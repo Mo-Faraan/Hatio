@@ -1,0 +1,71 @@
+🌱 Spring Boot Learning Notes – Day 1
+Topic Covered: Basics of Dependency Injection (DI) and Inversion of Control (IoC)
+🧠 Concepts Learned
+✅ Inversion of Control (IoC)
+It is a design principle where the control of object creation and dependency management is transferred from the program to the Spring framework.
+
+Spring provides a container (like ApplicationContext) which is responsible for managing object lifecycles.
+
+✅ Dependency Injection (DI)
+A design pattern that allows Spring to inject dependencies (objects) into other objects at runtime.
+
+It helps in building loosely coupled and testable code.
+
+✅ Spring Components
+Spring automatically detects and manages classes annotated with @Component, making them Spring Beans.
+
+Beans can be fetched using ApplicationContext.
+
+🧪 Code You Wrote
+📄 SpringbootfirstApplication.java
+java
+Copy
+Edit
+package com.example.springbootfirst;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+@SpringBootApplication
+public class SpringbootfirstApplication {
+
+	public static void main(String[] args) {
+		// Spring Boot application context is initialized here
+		ApplicationContext context = SpringApplication.run(SpringbootfirstApplication.class, args);
+
+		// Spring retrieves a managed bean of type Alien
+		Alien obj = context.getBean(Alien.class);
+
+		// Method on the Alien bean is called
+		obj.code();
+	}
+}
+📄 Alien.java
+java
+Copy
+Edit
+package com.example.springbootfirst;
+
+import org.springframework.stereotype.Component;
+
+@Component // Marks this class as a Spring-managed bean
+public class Alien {
+    public void code() {
+        System.out.println("Coding");
+    }
+}
+🔍 Explanation of Flow
+@SpringBootApplication tells Spring to do its auto-configuration and component scanning.
+
+ApplicationContext is the Spring container that manages all beans.
+
+Alien class is marked with @Component, so Spring registers it as a bean.
+
+In the main method, we ask the context to get a bean of type Alien, and then call its code() method.
+
+📌 Key Annotations Used
+Annotation	Description
+@SpringBootApplication	Combines @Configuration, @EnableAutoConfiguration, and @ComponentScan
+@Component	Marks a class as a Spring component/bean
+context.getBean()	Retrieves a Spring-managed bean from the container
