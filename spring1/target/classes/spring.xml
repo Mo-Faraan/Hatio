@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="alien" class="com.example.Alien"></bean> 
+    <!-- if single bean, all references from the main will call the same object -->
+    <bean id="alien2" class="com.example.Alien" scope="prototype"></bean> 
+    <!-- scope = singleton (default) creates beans the moment the container is loaded, refers the same obj when called from main
+            prototype creates beans only when getbeans is called and creates new beans whenever it is called from main -->
+    <bean id = "alien3" class="com.example.Alien">
+        <property name="age" value="21"></property>
+        <!-- injecting or letting spring handle the value or property of the bean -->
+    </bean>
+</beans>
