@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.example.springbootfirst.Model.Alien;
+import com.example.springbootfirst.Model.Laptop;
+import com.example.springbootfirst.Service.LaptopService;
+
 @SpringBootApplication
 public class SpringbootfirstApplication {
 
@@ -19,9 +23,18 @@ public class SpringbootfirstApplication {
 		 * This is the core concept of Dependency Injection: let the framework manage the dependencies.
 		 */
 
-		Alien obj;
-		obj = context.getBean(Alien.class); // Get the Alien bean from the Spring container
-		obj.code();
+		// Alien obj;
+		// obj = context.getBean(Alien.class); // Get the Alien bean from the Spring container
+		// System.out.println(obj.getAge());
+		// obj.code();
+
+		// Laptop lap = (Laptop) context.getBean("laptop");
+		// lap.code();
+
+		LaptopService service = context.getBean(LaptopService.class);
+		Laptop lap = context.getBean(Laptop.class);
+		service.add(lap);
+		
 
 	}
 
