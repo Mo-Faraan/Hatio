@@ -12,6 +12,35 @@
             prototype creates beans only when getbeans is called and creates new beans whenever it is called from main -->
     <bean id = "alien3" class="com.example.Alien">
         <property name="age" value="21"></property>
-        <!-- injecting or letting spring handle the value or property of the bean -->
+        <!-- setter injection, we are letting spring handle the property of the bean by INVOKING THE SETTER METHOD -->
+        <property name="com" ref="lap1"></property>
+        <!-- setter injection - using ref for handling references/objects instead of primitive values. should refer an existing bean -->
     </bean>
+    <bean id="lap1" class="com.example.Laptop"></bean>
+    <bean id="alien4" class="com.example.Alien">
+        <constructor-arg index="0" value="21"></constructor-arg>
+        <constructor-arg index="1" ref="lap1"></constructor-arg>
+        <!-- constructor injection, use index to refer to the order of the actual parameters -->
+    </bean>
+
+
+    <bean id="com1" class="com.example.Laptop" primary="true"></bean>
+    <bean id="com" class="com.example.Desktop" lazy-init="true" primary="true"></bean>
+    <!-- lazy-init = Creates the singleton bean only when its injected or requested -->
+    <!-- Using autowire  : -->
+    <bean id="alien5" class="com.example.Alien" autowire="byName">
+        <property name="age" value="21"></property>
+        <!-- autowire = byName finds the bean with the same name as com variable of alien and injects it into this bean
+        autowire = byType finds the bean with the same type as the variable of alien and injects it into this bean
+        if there are several beans of same type, selects primary bean -->
+    </bean>
+    
+
+    <!-- Using inner bean. can be defined inside property only used within the bean, cant be referenced outside -->
+     <bean id="alien6" class="com.example.Alien">
+        <property name="age" value="21"></property>
+        <property name="com">
+            <bean id="com2" class="com.example.Desktop"></bean>
+        </property>
+     </bean>
 </beans>

@@ -1,5 +1,7 @@
 package com.example;
 
+import java.text.NumberFormat.Style;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,7 +24,14 @@ public class App
         // Alien obj2 = (Alien) context.getBean("alien2");
         // System.out.println(obj2.age);
 
-        Alien obj = (Alien) context.getBean("alien3");
-        System.out.println(obj.getAge());
+        Alien obj = (Alien) context.getBean("alien6");
+        // System.out.println(obj.getAge());
+        obj.printcom();
+
+        Desktop desk = context.getBean("com",Desktop.class); 
+        Laptop lap = context.getBean(Laptop.class); 
+        //creating bean by type, selectes bean with primary true if there are multiple beans of same type
+
+    
     }
 }
