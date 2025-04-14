@@ -11,6 +11,9 @@ public class App
 {
     public static void main( String[] args ) throws LifecycleException
     {
+
+        //add embed tomcat and servlet api dependencies in pom file
+        
         // Step 1: Create a new Tomcat server instance
         // Step 2: Set the port on which the server will listen (e.g., http://localhost:8080)
         Tomcat tomcat = new Tomcat();
