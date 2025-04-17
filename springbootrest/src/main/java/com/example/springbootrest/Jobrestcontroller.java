@@ -33,8 +33,15 @@ public class Jobrestcontroller {
     public JobPost getjobpost(@PathVariable("postId") int postId){ //accepting values from the url use @PathVariable
         return service.getjob(postId);
     }
+
+    @GetMapping("jobPosts/keyword/{keyword}")
+    public List<JobPost> keywordsearch(@PathVariable("keyword") String keyword){
+        return service.getjobsbykeyword(keyword);
+    }
+
+
     
-    @PostMapping(path = "jobPost", consumes = {"application/xml, application/json"}) // similarly can also specify what content the post mapping should recieve as part of content negotiation.
+    @PostMapping(path = "jobPost", consumes = {"application/xml", "application/json"}) // similarly can also specify what content the post mapping should recieve as part of content negotiation.
     public JobPost addjobpost(@RequestBody JobPost jobPost){ //@RequestBody tells Spring to deserialize incoming JSON/XML to JobPost object. used to send data to the server in json format.
         service.addjob(jobPost);
         return service.getjob(jobPost.getPostId());
@@ -50,5 +57,11 @@ public class Jobrestcontroller {
     public String deletejob(@PathVariable int postId){
         service.deletejob(postId);
         return "deleted";
+    }
+
+    @GetMapping("load")
+    public String loaddata(){
+        service.loaddata();
+        return "Data loaded";
     }
 }
