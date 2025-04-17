@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 // the dispatcher servlet.
 // then we have to configure the dispatcher servlet by asking it to check the classes in the package and let it know we are using annotations in the dispatcher-servlet.xml
 // then we have to configure the view resolver to properly handle the views (jsp files) in dispatcher_servlet.xml by adding its bean
-
+// Run the external tomcat server and deploy it on that server and go to the localhost
 
 @Controller 
 public class Homecontroller {
